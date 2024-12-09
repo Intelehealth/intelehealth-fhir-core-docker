@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: fahadkabir/mysql:5.7
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: openmrs
+      MYSQL_DATABASE: openmrs
+      MYSQL_USER: openmrs
+      MYSQL_PASSWORD: openmrs
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./DB:/docker-entrypoint-initdb.d/
+    networks:
+      custom_network:
+        ipv4_address: 192.168.100.10
+
+  openmrs:
+    build: .
+    image: intelehealth-openmrs:1.0
+    restart: "unless-stopped"
+    container_name: openmrs
+    ports:
+      - "8080:8080"
+    command: /bin/bash -c "/root/mindmap.sh && /root/tomcatStart.sh && tail -f /opt/tomcat8/logs/catalina.out"
+    depends_on:
+      - mysql
+    networks:
+      custom_network:
+        ipv4_address: 192.168.100.11
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt:/etc/letsencrypt
+      - ./nginx/proxy_params:/etc/nginx/proxy_params
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - openmrs
+    networks:
+      custom_network:
+        ipv4_address: 192.168.100.12
+
+volumes:
+  db_data:
+
+networks:
+  custom_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.100.0/24
