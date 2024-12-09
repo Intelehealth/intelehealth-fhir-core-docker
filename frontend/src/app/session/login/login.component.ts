@@ -7,7 +7,7 @@ import { AuthGatewayLoginResponseModel, CheckSessionResponseModel, LoginResponse
 import { AuthService } from 'src/app/services/auth.service';
 import { TranslationService } from 'src/app/services/translation.service';
 import { getCacheData, setCacheData } from 'src/app/utils/utility-functions';
-import { languages, doctorDetails } from 'src/config/constant';
+import { doctorDetails, languages } from 'src/config/constant';
 import { environment } from 'src/environments/environment';
 
 @Component({
