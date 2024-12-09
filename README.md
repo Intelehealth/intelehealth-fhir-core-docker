@@ -2,6 +2,7 @@
 
 #pre-requisite
 1. sudo-less docker
+2. git-lfs (sudo apt-get install git-lfs)
 
 #steps
 
