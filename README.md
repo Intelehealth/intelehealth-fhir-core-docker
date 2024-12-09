@@ -11,7 +11,7 @@ step-1:
 
 step-2:
 
-        cd intelehealthdocker
+        cd intelehealth-fhir-core-docker
 
 step-3:
 
