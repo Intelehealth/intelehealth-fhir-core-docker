@@ -41,7 +41,7 @@ public class ResourcesEnvironment {
 	public String getMMBaseURL() {
 		String Base_URL = "";
 
-		String host = "https://intelehealth-demo.mpower-social.com:3004";
+		String host = "https://example.com:3004";
 		Base_URL=host+"/api/";
 
 		return Base_URL;

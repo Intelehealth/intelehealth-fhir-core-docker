@@ -1,4 +1,4 @@
-### intelehealthdocker
+### intelehealth-fhir-core-docker
 
 #pre-requisite
 1. sudo-less docker
@@ -7,7 +7,7 @@
 
 step-1:
 
-        git clone --depth=1 https://github.com/mpowersocialent/intelehealthdocker.git
+        git clone --depth=1 https://github.com/Intelehealth/intelehealth-fhir-core-docker
 
 step-2:
 
